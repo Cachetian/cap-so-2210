@@ -1,0 +1,30 @@
+---
+_schema-version: '3.1'
+ID: cap_so_2210
+version: 1.0.0-SNAPSHOT
+description: "cap_so_2210 application"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk@^6 cds build --production
+
+modules:
+  - name: cap_so_2210-srv
+    type: java
+    path: srv
+    parameters:
+      buildpack: java_buildpack
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud
+    build-parameters:
+      builder: custom
+      commands:
+        - mvn clean package -DskipTests=true
+      build-result: target/*-exec.jar
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
