@@ -17,7 +17,7 @@
     </properties>
     <modules>
         <module>srv</module>
-        <module>integration-tests</module>
+        <!-- <module>integration-tests</module> -->
     </modules>
     <dependencyManagement>
         <dependencies>
