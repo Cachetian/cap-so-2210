@@ -1,30 +1,78 @@
----
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: cap_so_2210
+description: cap_so_2210 application
 version: 1.0.0-SNAPSHOT
-description: "cap_so_2210 application"
+modules:
+- name: cap_so_2210-srv
+  type: java
+  path: srv
+  properties:
+    SPRING_PROFILES_ACTIVE: cloud
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: java_buildpack
+  build-parameters:
+    build-result: target/*-exec.jar
+    builder: custom
+    commands:
+    - mvn clean package -DskipTests=true
+- name: cap_so_2210-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: cap_so_2210-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - skyskybooks.zip
+      name: skyskybooks
+      target-path: resources/
+- name: skyskybooks
+  type: html5
+  path: app/skybooks
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cap_so_2210-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cap_so_2210-html5-srv
+    service-plan: app-host
+- name: cap_so_2210-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cap_so_2210-destination-service
+    service-plan: lite
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npx -p @sap/cds-dk@^6 cds build --production
-
-modules:
-  - name: cap_so_2210-srv
-    type: java
-    path: srv
-    parameters:
-      buildpack: java_buildpack
-    properties:
-      SPRING_PROFILES_ACTIVE: cloud
-    build-parameters:
-      builder: custom
-      commands:
-        - mvn clean package -DskipTests=true
-      build-result: target/*-exec.jar
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk@^6 cds build --production
