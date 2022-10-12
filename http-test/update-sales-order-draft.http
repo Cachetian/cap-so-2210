@@ -1,0 +1,7 @@
+PUT http://localhost:8080/odata/v4/SalesOrderService/SalesOrders(ID=1b419ecc-0451-473c-82aa-f697e78f9e0e,IsActiveEntity=true)
+Content-Type: application/json
+Authorization: Basic authenticated:
+
+{
+    "comment": "updated comment1"
+}

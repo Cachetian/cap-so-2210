@@ -1,7 +1,5 @@
 using sky.db as my from '../db/data-model';
 
 service CatalogService {
-    entity Books as projection on my.Books;
+    @readonly entity Books as projection on my.Books;
 }
-
-annotate CatalogService.Books with @odata.draft.enabled;

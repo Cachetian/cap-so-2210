@@ -8,3 +8,5 @@ service SalesOrderService {
 
     action sayHello() returns String;
 }
+
+annotate SalesOrderService.SalesOrders with @odata.draft.enabled;
