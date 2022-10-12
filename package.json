@@ -5,7 +5,8 @@
     "license": "ISC",
     "repository": "<Add your repository here>",
     "sapux": [
-        "app/skybooks"
+        "app/skybooks",
+        "app/skysalesorders"
     ],
     "devDependencies": {
         "@sap/ux-specification": "^1.102.9",

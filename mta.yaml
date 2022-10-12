@@ -33,9 +33,23 @@ modules:
       - skyskybooks.zip
       name: skyskybooks
       target-path: resources/
+    - artifacts:
+      - skysoskysalesorders.zip
+      name: skysoskysalesorders
+      target-path: resources/
 - name: skyskybooks
   type: html5
   path: app/skybooks
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: skysoskysalesorders
+  type: html5
+  path: app/skysalesorders
   build-parameters:
     build-result: dist
     builder: custom

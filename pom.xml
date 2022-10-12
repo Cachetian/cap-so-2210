@@ -7,8 +7,6 @@
     <packaging>pom</packaging>
     <name>cap_so_2210 parent</name>
     <properties>
-        
-        
         <revision>1.0.0-SNAPSHOT</revision>
         <jdk.version>1.8</jdk.version>
         <cds.services.version>1.27.1</cds.services.version>
@@ -17,12 +15,10 @@
     </properties>
     <modules>
         <module>srv</module>
-        <!-- <module>integration-tests</module> -->
+        
     </modules>
     <dependencyManagement>
         <dependencies>
-            
-            
             <dependency>
                 <groupId>com.sap.cds</groupId>
                 <artifactId>cds-services-bom</artifactId>
@@ -46,10 +42,6 @@
     </dependencyManagement>
     <build>
         <plugins>
-            
-            
-            
-            
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>

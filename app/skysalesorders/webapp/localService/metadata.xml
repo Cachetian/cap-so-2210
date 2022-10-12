@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="SalesOrderService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="SalesOrders" EntityType="SalesOrderService.SalesOrders"/>
+                <ActionImport Name="sayHello" Action="SalesOrderService.sayHello"/>
+            </EntityContainer>
+            <EntityType Name="SalesOrders">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="desc" Type="Edm.String" MaxLength="255"/>
+                <Property Name="comment" Type="Edm.String" MaxLength="255"/>
+            </EntityType>
+            <Action Name="updateComment" IsBound="true">
+                <Parameter Name="in" Type="SalesOrderService.SalesOrders"/>
+                <Parameter Name="comment" Type="Edm.String"/>
+                <ReturnType Type="Edm.String"/>
+            </Action>
+            <Action Name="postToErp" IsBound="true">
+                <Parameter Name="in" Type="SalesOrderService.SalesOrders"/>
+                <Parameter Name="comment" Type="Edm.String"/>
+                <ReturnType Type="Edm.String"/>
+            </Action>
+            <Action Name="sayHello" IsBound="false">
+                <ReturnType Type="Edm.String"/>
+            </Action>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
