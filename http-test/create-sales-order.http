@@ -1,0 +1,9 @@
+POST http://localhost:8080/odata/v4/SalesOrderService/SalesOrders
+Content-Type: application/json
+Authorization: Basic authenticated:
+
+{
+    "name": "name1",
+    "desc" : "this is desc1",
+    "comment": "my comment1"
+}
