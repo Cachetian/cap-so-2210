@@ -68,6 +68,38 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: cap_so_2210-db
+
+  - name: cap_so_2210-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: cap_so_2210-destination-service
+        parameters:
+          content-target: true
+      - name: cap_so_2210-repo-host
+        parameters:
+          service-key:
+            name: cap_so_2210-repo-host-key
+      - name: cap_so_2210-auth
+        parameters:
+          service-key:
+            name: cap_so_2210-auth-key
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: skysoskysalesorders_cap_java_2207_repo_host
+              ServiceInstanceName: cap_so_2210-html5-srv
+              ServiceKeyName: cap_so_2210-repo-host-key
+              sap.cloud.service: skysalesorders
+            - Authentication: OAuth2UserTokenExchange
+              Name: skysoskysalesorders_uaa_cap_java_2207
+              ServiceInstanceName: cap_so_2210-auth
+              ServiceKeyName: cap_so_2210-auth-key
+              sap.cloud.service: skysalesorders
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+
 resources:
   - name: cap_so_2210-repo-host
     type: org.cloudfoundry.managed-service
@@ -77,12 +109,21 @@ resources:
       service-plan: app-host
   - name: cap_so_2210-destination-service
     type: org.cloudfoundry.managed-service
+    requires:
+      - name: srv-api
     parameters:
       config:
-        HTML5Runtime_enabled: false
+        HTML5Runtime_enabled: true
         init_data:
           instance:
             destinations:
+              - Name: cap_so_2210-srv
+                Authentication: NoAuthentication
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
               - Authentication: NoAuthentication
                 Name: ui5
                 ProxyType: Internet
