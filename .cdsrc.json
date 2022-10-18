@@ -4,11 +4,16 @@
   },
   "requires": {
     "db": {
-      "kind": "sql"
+      "kind": "hana-cloud"
     },
     "[hybrid]": {
       "db": {
         "kind": "hana-cloud"
+      }
+    },
+    "[production]": {
+      "auth": {
+        "kind": "xsuaa"
       }
     }
   }

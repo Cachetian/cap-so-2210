@@ -21,6 +21,7 @@ modules:
         - mvn clean package -DskipTests=true
     requires:
       - name: cap_so_2210-db
+      - name: cap_so_2210-auth
   - name: cap_so_2210-app-content
     type: com.sap.application.content
     path: .
@@ -99,6 +100,15 @@ resources:
       service-plan: hdi-shared
     properties:
       hdi-service-name: ${service-name}
+  - name: cap_so_2210-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: cap_so_2210-${org}-${space}
+        tenant-mode: dedicated
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

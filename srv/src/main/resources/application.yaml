@@ -16,3 +16,6 @@ cds:
         - "10401010"
     - name: user
       password: user
+---
+spring:
+  config.activate.on-profile: cloud
