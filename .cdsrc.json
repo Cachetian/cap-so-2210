@@ -1,10 +1,15 @@
 {
-    "build": {
-        "target": "."
+  "build": {
+    "target": "."
+  },
+  "requires": {
+    "db": {
+      "kind": "sql"
     },
-    "requires": {
-        "db": {
-            "kind": "hana-cloud"
-        }
+    "[hybrid]": {
+      "db": {
+        "kind": "hana-cloud"
+      }
     }
+  }
 }
