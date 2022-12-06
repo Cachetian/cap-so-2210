@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run cap_so_2210-1",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "customer.cap_so_2210.Application",
+      "projectName": "cap_so_2210",
+      "preLaunchTask": "Build cap_so_2210",
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env1",
+      "args": [
+        "--spring.profiles.active=default"
+      ],
+      "env": {
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/cap_so_2210\\\",\\\"profileName\\\":\\\"default\\\"}\"}"
+      }
+    }
+  ]
+}

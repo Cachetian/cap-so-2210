@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build cap_so_2210",
+      "type": "shell",
+      "command": "mvn clean install",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}
