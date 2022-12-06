@@ -25,3 +25,9 @@ hs_err*
 
 .vscode
 .idea
+dist
+resources
+.env*
+package-lock.json
+# added by cds bind
+.cdsrc-private.json
