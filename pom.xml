@@ -15,7 +15,6 @@
     </properties>
     <modules>
         <module>srv</module>
-        
     </modules>
     <dependencyManagement>
         <dependencies>
