@@ -19,6 +19,11 @@
 			<groupId>com.sap.cds</groupId>
 			<artifactId>cds-starter-spring-boot</artifactId>
 		</dependency>
+    
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
 
 		<!-- ODATA PROTOCOL ADAPTER -->
 		<dependency>
@@ -26,6 +31,12 @@
 			<artifactId>cds-adapter-odata-v4</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+    <dependency>
+        <groupId>com.sap.cds</groupId>
+        <artifactId>cds-adapter-odata-v2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
